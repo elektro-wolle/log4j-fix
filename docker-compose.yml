@@ -1,0 +1,13 @@
+version: '2'
+services:
+    ldap:
+        build: ldap
+        restart: unless-stopped
+        ports:
+            - "389:1389"
+    payload:
+        build: payload
+        restart: unless-stopped
+        environment:
+            VIRTUAL_HOST: 'log4j-fix.de,www.log4j-fix.de'
+            LETSENCRYPT_HOST: 'log4j-fix.de,www.log4j-fix.de'
